@@ -1,0 +1,44 @@
+server:
+  port: 8088
+spring:
+  zipkin:
+    base-url: http://localhost:9411/
+
+  kafka:
+    bootstrap-servers: localhost:9092
+    application-id: scoringservice
+    window-size: 5
+    consumer:
+      group-id: gid
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+#test
+ss:
+  topic:
+    luBound: bound-topic
+    #intigration
+#    inputX: $$inputX$$ # CDS_X will be injected here
+#    inputY: $$inputY$$ # CDS_Y will be injected here
+#    siOutput: $$sioutput$$ # SI_X_Y will be injected here
+#    niOutput: $$nioutput$$ # NI_X_Y will be injected here
+
+
+    #testing
+    inputX: test-CDS-X # CDS_X will be injected here
+    inputY: test-CDS-Y # CDSY will be injected here
+    siOutput: test-si-topic1 # SI_X_Y will be injected here
+    niOutput: test-nsi-topic2 # NI_X_Y will be injected here
+
+sleuth:
+  sampler:
+    probability: 1
+logging:
+  level:
+    root: ERROR
+  org.springframework: ERROR
+
+
